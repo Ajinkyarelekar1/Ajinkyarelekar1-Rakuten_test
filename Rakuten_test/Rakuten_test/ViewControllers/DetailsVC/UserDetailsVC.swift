@@ -21,7 +21,7 @@ class UserDetailsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navbarTitleText = "User Details"
+        navbarTitleText = "Repository Details"
         viewModel.delegate = self
     }
     
@@ -54,6 +54,23 @@ extension UserDetailsVC: UITableViewDataSource {
         return UIConstants.textCellHeight
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0 : 20
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1:
+            return "Project Details"
+        case 2:
+            return "Workspace Details"
+        case 3:
+            return "Owner Details"
+        default:
+            return ""
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.textCellIdentifier) else {
             fatalError("failed to create cell \(UIConstants.textCellIdentifier)")
@@ -64,7 +81,12 @@ extension UserDetailsVC: UITableViewDataSource {
 }
 
 extension UserDetailsVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        if indexPath.section == 0 && indexPath.row == 5 && !(viewModel.user?.website ?? "").isEmpty {
+            viewModel.openWebSite()
+        }
+    }
 }
 
 extension UserDetailsVC: UserDetailsViewModelDelegate {
