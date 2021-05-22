@@ -8,8 +8,9 @@
 import Foundation
 
 struct UserResponse: Codable {
-    let pagelen: Int
-    let values: [User]
+    let pagelen: Int?
+    let values: [User]?
+    let next: String?
 }
 
 struct User: Codable {
@@ -24,7 +25,7 @@ struct User: Codable {
     let project: Project?
     let language: String?
     let createdOn: String?
-    let mainbranch: [String: String]
+    let mainbranch: [String: String]?
     let workspace: Workspace?
     let hasIssues: Bool?
     let owner: Owner?

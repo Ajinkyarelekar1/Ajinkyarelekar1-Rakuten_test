@@ -9,17 +9,19 @@ import Foundation
 import UIKit
 
 protocol DataListViewModelDelegate {
-    func loadUsers()
+    func loadUsers(lastIndex: Int)
 }
 
 class DataListViewModel: NSObject {
     var users: [User] = []
     var delegate: DataListViewModelDelegate?
-    
+    var nextUrl: String?
     func callFetchUsers() {
-        APIHelper.fetchUsers { [unowned self] (users) in
-            self.users = users
-            self.delegate?.loadUsers()
+        APIHelper.fetchUsers(nextURL: nextUrl) { [unowned self] (users, nextUrl)  in
+            let lastIndex = self.users.count
+            self.users.append(contentsOf: users)
+            self.nextUrl = nextUrl
+            self.delegate?.loadUsers(lastIndex: lastIndex)
         } failure: { (errorMessage) in
             if let error = errorMessage {
                 Helpers.showErrorAlert(withMessage: error)

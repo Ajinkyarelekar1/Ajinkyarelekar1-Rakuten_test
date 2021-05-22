@@ -13,11 +13,13 @@ class DataListVC: BaseViewController {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.registerCell(cellType: UserCell.self)
+            tableView.registerCell(cellType: ButtonCell.self)
             tableView.setdefaults()
         }
     }
     
     let viewModel = DataListViewModel()
+    private var isNextVisible = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,19 +41,33 @@ class DataListVC: BaseViewController {
 
 extension DataListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.users.count
+        if viewModel.nextUrl == nil {
+            return viewModel.users.count
+        }
+        return viewModel.users.count + 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UserCell().cellHeight
+        if indexPath.row < viewModel.users.count {
+            return UserCell().cellHeight
+        }
+        return ButtonCell().cellHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = viewModel.users[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.cellIdentifier()) as? UserCell else {
+        if indexPath.row < viewModel.users.count {
+            let user = viewModel.users[indexPath.row]
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.cellIdentifier()) as? UserCell else {
+                fatalError("failed to create cell userCell")
+            }
+            viewModel.formatCell(cell: cell, user: user)
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.cellIdentifier()) as? ButtonCell else {
             fatalError("failed to create cell userCell")
         }
-        viewModel.formatCell(cell: cell, user: user)
+        cell.btn.setTitle("Next", for: .normal)
+        cell.delegate = self
         return cell
     }
 }
@@ -59,15 +75,31 @@ extension DataListVC: UITableViewDataSource {
 extension DataListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        showDetailsVC(user: viewModel.users[indexPath.row])
+        if indexPath.row < viewModel.users.count {
+            showDetailsVC(user: viewModel.users[indexPath.row])
+        }
     }
 }
 
 
 extension DataListVC: DataListViewModelDelegate {
-    func loadUsers() {
+    func loadUsers(lastIndex: Int) {
+        var newRows = [IndexPath]()
+        for row in lastIndex..<viewModel.users.count {
+            newRows.append(IndexPath(row: row, section: 0))
+        }
+        if viewModel.nextUrl != nil && !isNextVisible {
+            newRows.append(IndexPath(row: lastIndex+newRows.count, section: 0))
+            isNextVisible = true
+        }
         DispatchQueue.main.async { [unowned self] in
-            tableView.reloadData()
+            tableView.beginUpdates()
+            tableView.insertRows(at: newRows, with: .automatic)
+            if viewModel.nextUrl == nil && isNextVisible {
+                tableView.deleteRows(at: [IndexPath(row: viewModel.users.count, section: 0)], with: .automatic)
+                isNextVisible = false
+            }
+            tableView.endUpdates()
         }
     }
     
@@ -78,4 +110,10 @@ extension DataListVC: DataListViewModelDelegate {
         }
     }
 
+}
+
+extension DataListVC: ButtonCellDelegates {
+    func buttonClick() {
+        viewModel.callFetchUsers()
+    }
 }

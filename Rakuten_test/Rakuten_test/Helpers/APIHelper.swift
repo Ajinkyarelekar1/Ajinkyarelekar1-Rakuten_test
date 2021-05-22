@@ -47,13 +47,13 @@ enum HTTPMethod: String {
 
 
 extension APIHelper {
-    class func fetchUsers(success: @escaping (_ users: [User])->Void, failure: @escaping (_ error: String?)->Void) {
-        if let request = APIHelper.request(withURL: APIServices.users.endpoint, type: .get, params: nil) {
+    class func fetchUsers(nextURL: String?, success: @escaping (_ users: [User], _ nextUrl: String?)->Void, failure: @escaping (_ error: String?)->Void) {
+        if let request = APIHelper.request(withURL: (nextURL == nil ? APIServices.users.endpoint : nextURL!), type: .get, params: nil) {
             SVProgressHUD.show()
             APIHelper.response(withRequest: request) { (responseData) in
                 SVProgressHUD.dismiss()
-                if let userResponse = JSONDecoder.decodeInStyle(UserResponse.self, from: responseData) {
-                    success(userResponse.values)
+                if let userResponse = JSONDecoder.decodeInStyle(UserResponse.self, from: responseData), let users = userResponse.values {
+                    success(users, userResponse.next)
                 } else {
                     failure(nil)
                 }
