@@ -29,11 +29,24 @@ class DataListViewModel: NSObject {
         }
     }
     
-    func formatCell(cell: UITableViewCell, user: User) {
-//        cell.textLabel?.text = "\(user.id): " + "\(user.name)"
+    func formatCell(cell: UserCell, user: User) {
+        APIHelper.setImage(to: cell.imgAvatar, withUrl: user.links?.avatar?["href"] ?? "")
+        cell.lblName.text = user.name
+        cell.lblType.text = user.type
+        cell.lblCreatedOn.text = convertedDate(dateStr: user.createdOn ?? "")
         cell.tintColor = .white
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.textColor = .white
-        cell.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+    }
+    
+    func convertedDate(dateStr: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let date = dateFormatter.date(from:dateStr) {
+            dateFormatter.dateFormat = "dd MMM yyyy hh:mm a"
+            return dateFormatter.string(from: date)
+        }
+        return dateStr
     }
 }

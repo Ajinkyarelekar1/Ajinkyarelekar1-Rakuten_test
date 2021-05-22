@@ -13,7 +13,7 @@ class UserDetailsVC: BaseViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: UIConstants.textCellIdentifier)
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: UIConstants.userCell)
             tableView.setdefaults()
         }
     }

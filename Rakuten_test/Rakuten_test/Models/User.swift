@@ -23,7 +23,7 @@ struct User: Codable {
     let name: String?
     let project: Project?
     let language: String?
-    let created_on: String?
+    let createdOn: String?
     let mainbranch: [String: String]
     let workspace: Workspace?
     let hasIssues: Bool?

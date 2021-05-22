@@ -16,10 +16,10 @@ class UserDetailsViewModel: NSObject {
     var user: User?
     var delegate: UserDetailsViewModelDelegate?
     let rows: [DetailRow] = [
-        DetailRow(identifier: UIConstants.textCellIdentifier, height: UIConstants.textCellHeight, cellType: .name),
-        DetailRow(identifier: UIConstants.textCellIdentifier, height: UIConstants.textCellHeight, cellType: .username),
-        DetailRow(identifier: UIConstants.textCellIdentifier, height: UIConstants.textCellHeight, cellType: .email),
-        DetailRow(identifier: UIConstants.textCellIdentifier, height: UIConstants.textCellHeight, cellType: .phone),
+        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .name),
+        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .username),
+        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .email),
+        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .phone),
     ]
     
     func formatCell(cell: UITableViewCell, row: DetailRow) {

@@ -12,7 +12,6 @@ class APIHelper {
     class func response(withRequest request: URLRequest, success: @escaping (_ data: Data)->Void, failure: @escaping (_ error: Error?)->Void) {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let responseData = data, error == nil {
-                print("(AJ:::: response - \(String(decoding: data!, as: UTF8.self))")
                 success(responseData)
             } else {
                 failure(error)
@@ -62,6 +61,18 @@ extension APIHelper {
                 SVProgressHUD.dismiss()
                 failure(error?.localizedDescription)
             }
+        }
+    }
+    
+    class func setImage(to imageView: UIImageView, withUrl url: String) {
+        if let request = APIHelper.request(withURL: url, type: .get, params: nil) {
+            APIHelper.response(withRequest: request) { (responseData) in
+                if let image = UIImage(data: responseData) {
+                    DispatchQueue.main.async {
+                        imageView.image = image
+                    }
+                }
+            } failure: { (error) in}
         }
     }
 }

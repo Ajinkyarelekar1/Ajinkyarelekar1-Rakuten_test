@@ -13,7 +13,7 @@ class UserCell: BaseTableCell, CustomCellProtocol {
     @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var lblCreatedOn: UILabel!
     
-    var cellHeight: CGFloat = 80
+    var cellHeight: CGFloat = 100
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +28,5 @@ class UserCell: BaseTableCell, CustomCellProtocol {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addEdgeInset()
     }
 }

@@ -12,7 +12,7 @@ class DataListVC: BaseViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: UIConstants.textCellIdentifier)
+            tableView.registerCell(cellType: UserCell.self)
             tableView.setdefaults()
         }
     }
@@ -42,9 +42,13 @@ extension DataListVC: UITableViewDataSource {
         return viewModel.users.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UserCell().cellHeight
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user = viewModel.users[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.textCellIdentifier) else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.cellIdentifier()) as? UserCell else {
             fatalError("failed to create cell userCell")
         }
         viewModel.formatCell(cell: cell, user: user)

@@ -27,6 +27,6 @@ enum APIServices: String {
 }
 
 struct UIConstants {
-    static let textCellIdentifier = "textCell"
+    static let userCell = "UserCell"
     static let textCellHeight: CGFloat = 54
 }
