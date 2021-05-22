@@ -12,7 +12,7 @@
 		133C2DF02658EBFB00FFFB85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133C2DEE2658EBFB00FFFB85 /* Main.storyboard */; };
 		133C2DF22658EBFC00FFFB85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133C2DF12658EBFC00FFFB85 /* Assets.xcassets */; };
 		133C2DF52658EBFC00FFFB85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133C2DF32658EBFC00FFFB85 /* LaunchScreen.storyboard */; };
-		133C2E002658EBFC00FFFB85 /* Rakuten_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2DFF2658EBFC00FFFB85 /* Rakuten_testTests.swift */; };
+		133C2E002658EBFC00FFFB85 /* DataListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2DFF2658EBFC00FFFB85 /* DataListViewModelTests.swift */; };
 		133C2E0B2658EBFC00FFFB85 /* Rakuten_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2E0A2658EBFC00FFFB85 /* Rakuten_testUITests.swift */; };
 		133C2E1D2658F01B00FFFB85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2E1C2658F01B00FFFB85 /* ViewController.swift */; };
 		133C2E282658F03500FFFB85 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2E222658F03500FFFB85 /* UserDetailsViewModel.swift */; };
@@ -30,6 +30,7 @@
 		133C2E902658FC3A00FFFB85 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2E8E2658FC3A00FFFB85 /* UserCell.swift */; };
 		133C2EA026590E1E00FFFB85 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133C2E9E26590E1E00FFFB85 /* ButtonCell.xib */; };
 		133C2EA126590E1E00FFFB85 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C2E9F26590E1E00FFFB85 /* ButtonCell.swift */; };
+		133C2EA72659212600FFFB85 /* repositories.json in Resources */ = {isa = PBXBuildFile; fileRef = 133C2EA62659212600FFFB85 /* repositories.json */; };
 		7C673AF0A7B0AEBA49611FE2 /* Pods_Rakuten_testTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DF7FF69C4BF6DAC5048D5E /* Pods_Rakuten_testTests.framework */; };
 		AB79B81F934327489C18EEA9 /* Pods_Rakuten_test_Rakuten_testUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9EE0DDB7C04A3B8A055170 /* Pods_Rakuten_test_Rakuten_testUITests.framework */; };
 /* End PBXBuildFile section */
@@ -59,7 +60,7 @@
 		133C2DF42658EBFC00FFFB85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		133C2DF62658EBFC00FFFB85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		133C2DFB2658EBFC00FFFB85 /* Rakuten_testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Rakuten_testTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		133C2DFF2658EBFC00FFFB85 /* Rakuten_testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rakuten_testTests.swift; sourceTree = "<group>"; };
+		133C2DFF2658EBFC00FFFB85 /* DataListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListViewModelTests.swift; sourceTree = "<group>"; };
 		133C2E012658EBFC00FFFB85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		133C2E062658EBFC00FFFB85 /* Rakuten_testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Rakuten_testUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		133C2E0A2658EBFC00FFFB85 /* Rakuten_testUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rakuten_testUITests.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		133C2E8E2658FC3A00FFFB85 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		133C2E9E26590E1E00FFFB85 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		133C2E9F26590E1E00FFFB85 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		133C2EA62659212600FFFB85 /* repositories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repositories.json; sourceTree = "<group>"; };
 		157B44D43B272366C7A4D223 /* Pods-Rakuten_test-Rakuten_testUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rakuten_test-Rakuten_testUITests.debug.xcconfig"; path = "Target Support Files/Pods-Rakuten_test-Rakuten_testUITests/Pods-Rakuten_test-Rakuten_testUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B9EE0DDB7C04A3B8A055170 /* Pods_Rakuten_test_Rakuten_testUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rakuten_test_Rakuten_testUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		457892B92A83C5351260769C /* Pods-Rakuten_testTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rakuten_testTests.release.xcconfig"; path = "Target Support Files/Pods-Rakuten_testTests/Pods-Rakuten_testTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		133C2DDC2658EBFA00FFFB85 = {
 			isa = PBXGroup;
 			children = (
+				133C2EA5265920CB00FFFB85 /* MockData */,
 				133C2DE72658EBFA00FFFB85 /* Rakuten_test */,
 				133C2DFE2658EBFC00FFFB85 /* Rakuten_testTests */,
 				133C2E092658EBFC00FFFB85 /* Rakuten_testUITests */,
@@ -161,7 +164,7 @@
 		133C2DFE2658EBFC00FFFB85 /* Rakuten_testTests */ = {
 			isa = PBXGroup;
 			children = (
-				133C2DFF2658EBFC00FFFB85 /* Rakuten_testTests.swift */,
+				133C2DFF2658EBFC00FFFB85 /* DataListViewModelTests.swift */,
 				133C2E012658EBFC00FFFB85 /* Info.plist */,
 			);
 			path = Rakuten_testTests;
@@ -265,6 +268,14 @@
 				133C2E9F26590E1E00FFFB85 /* ButtonCell.swift */,
 			);
 			path = ButtonCell;
+			sourceTree = "<group>";
+		};
+		133C2EA5265920CB00FFFB85 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				133C2EA62659212600FFFB85 /* repositories.json */,
+			);
+			path = MockData;
 			sourceTree = "<group>";
 		};
 		502A6CD65847D09C8DEE3054 /* Frameworks */ = {
@@ -403,6 +414,7 @@
 				133C2EA026590E1E00FFFB85 /* ButtonCell.xib in Resources */,
 				133C2E8F2658FC3A00FFFB85 /* UserCell.xib in Resources */,
 				133C2DF02658EBFB00FFFB85 /* Main.storyboard in Resources */,
+				133C2EA72659212600FFFB85 /* repositories.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				133C2E002658EBFC00FFFB85 /* Rakuten_testTests.swift in Sources */,
+				133C2E002658EBFC00FFFB85 /* DataListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

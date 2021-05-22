@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 struct MainConstants {
     static let baseURL = "https://api.bitbucket.org/2.0/"
+    static var useMockForTest = false
 }
 
 enum StoryBoards: String {

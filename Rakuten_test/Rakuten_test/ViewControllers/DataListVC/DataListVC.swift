@@ -23,7 +23,7 @@ class DataListVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navbarTitleText = "Users"
+        navbarTitleText = "Repositories"
         viewModel.delegate = self
         viewModel.callFetchUsers()
     }

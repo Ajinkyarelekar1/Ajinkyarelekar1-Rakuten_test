@@ -10,6 +10,10 @@ import SVProgressHUD
 
 class APIHelper {
     class func response(withRequest request: URLRequest, success: @escaping (_ data: Data)->Void, failure: @escaping (_ error: Error?)->Void) {
+        if MainConstants.useMockForTest {
+            success(mockData(forEndPoint: request.url?.absoluteString.components(separatedBy: "/").last ?? "") ?? Data())
+            return
+        }
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let responseData = data, error == nil {
                 success(responseData)
@@ -18,6 +22,13 @@ class APIHelper {
             }
         }
         dataTask.resume()
+    }
+    
+    class func mockData(forEndPoint endpoint: String) -> Data? {
+        if let path = Bundle.main.path(forResource: endpoint, ofType: "json") {
+            return try? Data(contentsOf: URL(fileURLWithPath: path))
+        }
+        return nil
     }
     
     class func request(withURL urlstring: String, type: HTTPMethod, params: Data?) -> URLRequest? {
