@@ -15,45 +15,28 @@ protocol UserDetailsViewModelDelegate {
 class UserDetailsViewModel: NSObject {
     var user: User?
     var delegate: UserDetailsViewModelDelegate?
-    let rows: [DetailRow] = [
-        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .name),
-        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .username),
-        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .email),
-        DetailRow(identifier: UIConstants.userCell, height: UIConstants.textCellHeight, cellType: .phone),
-    ]
     
-    func formatCell(cell: UITableViewCell, row: DetailRow) {
-//        switch row.cellType {
-//        case .name:
-//            cell.textLabel?.text = "Name: " + (user?.name ?? "")
-//        case .username:
-//            cell.textLabel?.text = "Username: " + (user?.username ?? "")
-//        case .email:
-//            cell.textLabel?.text = "Email: " + (user?.email ?? "")
-//        case .address:
-//            if let cell = cell as? AddressCell {
-//                cell.lblStreet.text = user?.address.street
-//                cell.lblSuite.text = user?.address.suite
-//                cell.lblcity.text = user?.address.city
-//                cell.lblZip.text = user?.address.zipcode
-//                cell.btnMap.removeTarget(nil, action: nil, for: .touchUpInside)
-//                cell.btnMap.addTarget(self, action: #selector(self.openMap), for: .touchUpInside)
-//            }
-//        case .phone:
-//            cell.textLabel?.text = "Phone Number: " + (user?.phone ?? "")
-//        case .website:
-//            if let cell = cell as? ButtonCell {
-//                cell.btn.setTitle("Visit: \(user?.website ?? "-")", for: .normal)
-//                cell.btn.removeTarget(nil, action: nil, for: .touchUpInside)
-//                cell.btn.addTarget(self, action: #selector(self.openWebSite), for: .touchUpInside)
-//            }
-//        case .company:
-//            if let cell = cell as? CompanyCell {
-//                cell.lblName.text = user?.company.name
-//                cell.lblCatchPhrase.text = user?.company.catchPhrase
-//                cell.lblbs.text = user?.company.bs
-//            }
-//        }
+    func sectionCount() -> Int {
+        return 4
+    }
+    
+    func rowCount(forSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 9
+        case 1:
+            return 4
+        case 2:
+            return 2
+        case 3:
+            return 4
+        default:
+            return 0
+        }
+    }
+    
+    func formatCell(cell: UITableViewCell, forIndexpath indexpath: IndexPath) {
+        
     }
     
     @IBAction func openWebSite() {
@@ -64,14 +47,4 @@ class UserDetailsViewModel: NSObject {
             delegate?.showWebSite(url: website)
         }
     }
-}
-
-struct DetailRow {
-    let identifier: String
-    let height: CGFloat
-    let cellType: DetailCellType
-}
-
-enum DetailCellType {
-    case name, username, email, address, phone, website, company
 }

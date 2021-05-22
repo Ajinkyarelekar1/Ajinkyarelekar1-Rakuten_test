@@ -13,7 +13,7 @@ class UserDetailsVC: BaseViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: UIConstants.userCell)
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: UIConstants.textCellIdentifier)
             tableView.setdefaults()
         }
     }
@@ -42,20 +42,23 @@ class UserDetailsVC: BaseViewController {
 }
 
 extension UserDetailsVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.rows.count
+        return viewModel.rowCount(forSection: section)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.rows[indexPath.row].height
+        return UIConstants.textCellHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = viewModel.rows[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: row.identifier) else {
-            fatalError("failed to create cell \(row.identifier)")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.textCellIdentifier) else {
+            fatalError("failed to create cell \(UIConstants.textCellIdentifier)")
         }
-        viewModel.formatCell(cell: cell, row: row)
+        viewModel.formatCell(cell: cell, forIndexpath: indexPath)
         return cell
     }
 }
