@@ -39,8 +39,8 @@ struct User: Codable {
 struct Links: Codable {
     let watchers: [String: String]?
     let branches: [String: String]?
-    let tags: [String: String]
-    let commits: [String: String]
+    let tags: [String: String]?
+    let commits: [String: String]?
     let clone: [[String: String]]?
     let source: [String: String]?
     let html: [String: String]?

@@ -12,6 +12,7 @@ class APIHelper {
     class func response(withRequest request: URLRequest, success: @escaping (_ data: Data)->Void, failure: @escaping (_ error: Error?)->Void) {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let responseData = data, error == nil {
+                print("(AJ:::: response - \(String(decoding: data!, as: UTF8.self))")
                 success(responseData)
             } else {
                 failure(error)
@@ -52,8 +53,8 @@ extension APIHelper {
             SVProgressHUD.show()
             APIHelper.response(withRequest: request) { (responseData) in
                 SVProgressHUD.dismiss()
-                if let users = JSONDecoder.decodeInStyle([User].self, from: responseData) {
-                    success(users)
+                if let userResponse = JSONDecoder.decodeInStyle(UserResponse.self, from: responseData) {
+                    success(userResponse.values)
                 } else {
                     failure(nil)
                 }
